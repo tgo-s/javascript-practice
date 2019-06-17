@@ -17,6 +17,7 @@ process.stdin.resume();
 process.stdin.setEncoding('utf8');
 
 const tempArray = [];
+const inputRegex = new RegExp(/^-?\d*$/);
 
 function duplicate(arr) {
   return arr.concat(arr);
@@ -27,9 +28,10 @@ function inputIntegerValidation(text) {
   let msg = '';
   try {
     const inputVal = text.replace(/\r?\n|\r/g, ' ').trim();
-    if (/^-?\d*$/.test(inputVal)) {
+
+    if (inputRegex.test(inputVal)) {
       const value = parseInt(inputVal, 10);
-      if (value) { isValid = true; }
+      if (Number.isInteger(value)) { isValid = true; }
     } else {
       msg = 'Input entered is not a valid integer. Only integer numbers are accepted. Please try again. \n';
     }
