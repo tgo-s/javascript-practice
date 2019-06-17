@@ -1,0 +1,39 @@
+{
+  "name": "resolver-assessment",
+  "version": "1.0.0",
+  "description": "Project for resolver assessment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tgo-s/resolver-assessment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tgo-s/resolver-assessment/issues"
+  },
+  "homepage": "https://github.com/tgo-s/resolver-assessment#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "jquery": "",
+    "underscore": "",
+    "request": "", 
+    "express": "", 
+    "jade": "", 
+    "shelljs" : "",
+    "passport" : "",
+    "http" : "",
+    "sys" : "",
+    "lodash" : "",
+    "async" : "",
+    "mocha" : "",
+    "moment" : "",
+    "connect": ""
+  }
+}
