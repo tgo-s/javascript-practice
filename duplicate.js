@@ -24,14 +24,13 @@ function duplicate(arr) {
 }
 
 function inputIntegerValidation(text) {
-  let isValid = false;
   let msg = '';
   try {
     const inputVal = text.replace(/\r?\n|\r/g, ' ').trim();
 
     if (inputRegex.test(inputVal)) {
       const value = parseInt(inputVal, 10);
-      if (Number.isInteger(value)) { isValid = true; }
+      if (Number.isInteger(value)) { tempArray.push(value); }
     } else {
       msg = 'Input entered is not a valid integer. Only integer numbers are accepted. Please try again. \n';
     }
@@ -40,13 +39,10 @@ function inputIntegerValidation(text) {
     console.log(`Exception: ${e}`);
   }
   if (msg && msg !== '') { process.stdout.write(msg); }
-  return isValid;
 }
 
 process.stdin.on('data', (text) => {
-  if (inputIntegerValidation(text)) {
-    tempArray.push(parseInt(text, 10));
-  }
+  inputIntegerValidation(text);
 });
 
 process.stdin.on('end', () => {
