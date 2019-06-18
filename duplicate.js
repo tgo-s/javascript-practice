@@ -41,15 +41,19 @@ function inputValidation(text) {
   if (msg && msg !== '') { process.stdout.write(msg); }
 }
 
-process.stdin.on('data', (text) => {
-  inputValidation(text);
-});
-
-process.stdin.on('end', () => {
+function outputDuplicatedItems() {
   if (tempArray.length > 0) {
     const output = duplicate(tempArray);
     const outputString = JSON.stringify(output);
     process.stdout.write(`Input duplicated : ${outputString} \n`);
   }
+}
+
+process.stdin.on('data', (text) => {
+  inputValidation(text);
+});
+
+process.stdin.on('end', () => {
+  outputDuplicatedItems();
   process.stdout.write('Program ended.\n');
 });
