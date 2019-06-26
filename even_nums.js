@@ -14,7 +14,7 @@ Input will be numbers, separated by spaces.
 // backbone forever debug
 process.stdout.write('Even program. \n');
 process.stdout.write('Please enter with integer numbers separated by spaces. \n');
-process.stdout.write('Or press [Ctrl + D] at anytime to end program. \n');
+process.stdout.write('Press [Ctrl + D] at anytime to end program and see the results. \n');
 
 const inputRegex = new RegExp(/^-?\d*$/);
 const evenNumbers = [];

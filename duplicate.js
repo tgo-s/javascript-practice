@@ -10,8 +10,8 @@ Input will always be an array.
 // async mocha moment connect validator restify ejs ws co when helmet wrench brain mustache should
 // backbone forever debug
 process.stdout.write('Duplicate program. \n');
-process.stdout.write('Please enter an array. \n');
-process.stdout.write('Or press [Ctrl + D] at anytime to end program. \n');
+process.stdout.write('Please enter an array of values \n');
+process.stdout.write('Press [Ctrl + D] at anytime to end program and see the results. \n');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -25,14 +25,15 @@ function duplicate(arr) {
 function inputValidation(text) {
   let msg = '';
   try {
-    const usrInputArr = JSON.parse(text);
+    const inputVal = text.replace(/\r?\n|\r/g, '').trim();
+    const usrInputArr = inputVal.split(',');
     const isArray = Array.isArray(usrInputArr);
     if (isArray) {
       usrInputArr.forEach((el) => {
-        tempArray.push(el);
+        tempArray.push(el.trim());
       });
     } else {
-      msg = 'Input entered is not a valid array. Only array input are accepted. Please try again. \n';
+      msg = 'Input entered is not a valid array. Only input array are accepted. Please try again. \n';
     }
   } catch (e) {
     msg = 'An error occured trying to validate your input. Please verify if you entered a valid array. (E.g: [1,2,3,4]) \n';

@@ -10,8 +10,8 @@ Inputs will be a pair of numbers, separated by a space.
 // shelljs passport http sys lodash async mocha moment connect validator
 // restify ejs ws co when helmet wrench brain mustache should backbone forever debug
 process.stdout.write('Square program. \n');
-process.stdout.write('Please enter with 2 integers numbers separated by spaces. \n');
-process.stdout.write('Or press [Ctrl + D] at anytime to end program. \n');
+process.stdout.write('Please enter with pair of integer numbers, separated by a space. \n');
+process.stdout.write('Press [Ctrl + D] at anytime to end program and see the results. \n');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -31,10 +31,11 @@ function testInputValue(value) {
 }
 
 function buildSquareObject(inputArr) {
+  const difference = (sq1, sq2) => sq1 - sq2;
   return {
     input: inputArr.join(' '),
     square: inputArr.map(square).join(' - '),
-    difference: inputArr.map(square).reduce((s1, s2) => s1 - s2),
+    difference: inputArr.map(square).reduce(difference),
   };
 }
 

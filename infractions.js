@@ -2,6 +2,9 @@
 Refactor the provided method, getMostRecentInfractionsForVehicle,
 using functional programming paradigms.
 */
+process.stdout.write('Infractions program. \n');
+process.stdout.write('Please enter with a plate. Example: "ABCD 123" (whithout quotation marks). \n');
+process.stdout.write('Press [Ctrl + D] at anytime to end program and see the results. \n');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf8');
@@ -23,38 +26,45 @@ const infractions = [
     date: '2016-04-14',
     type: 'operating.mobile.device',
   },
+  {
+    plate: 'ABCD I23',
+    date: '2017-04-28',
+    type: 'parking.at.restricted.area',
+  },
+  {
+    plate: 'DCDE 456',
+    date: '2018-06-16',
+    type: 'seatbelt',
+  },
 ];
+
+function compareInfractionDates(infractionA, infractionB) {
+  return new Date(infractionB.date).getTime() - new Date(infractionA.date).getTime();
+}
+
 function getMostRecentInfractionForVehicle(plate) {
-  const infractionsByCar = [];
-  for (let i = 0; i < infractions.length; i++) {
-    if (infractions[i].plate === plate) {
-      infractionsByCar.push(infractions[i]);
-    }
-  }
+  const infractionsByCar = infractions.filter(infraction => infraction.plate === plate);
 
   if (infractionsByCar.length > 0) {
-    const sorted = infractionsByCar.sort((a, b) => {
-      if (new Date(a.date).getTime() > new Date(b.date).getTime()) {
-        return -1;
-      } if (new Date(a.date).getTime() < new Date(b.date).getTime()) {
-        return 1;
-      }
-      return 0;
-    });
+    const sorted = infractionsByCar.sort(compareInfractionDates);
     return sorted[0];
   }
-  return undefined;
+  return { msg: `Infraction not found for plate: ${plate}` };
 }
+function processInput(text) {
+  const plates = text.split(',');
+  const output = [];
+  plates.forEach(plate => output.push(getMostRecentInfractionForVehicle(plate)));
+  return output;
+}
+
 process.stdin.on('data', (text) => {
-  input += text;
+  input = !input || input === ''
+    ? input += text.replace(/\r?\n|\r/g, '').trim()
+    : input.concat(',', text.replace(/\r?\n|\r/g, '').trim());
 });
 
 process.stdin.on('end', () => {
-  // do your processing here.
-  const result = getMostRecentInfractionForVehicle(input);
+  const result = processInput(input);
   console.log(JSON.stringify(result));
 });
-// Edit above at your own risk
-
-
-// TODO: Refactor this function to use functional programming paradigms
