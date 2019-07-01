@@ -24,10 +24,7 @@ function square(num) {
 }
 
 function testInputValue(value) {
-  if (typeof value === 'number' || inputRegex.test(value)) {
-    return true;
-  }
-  return false;
+  return (typeof value === 'number' || inputRegex.test(value));
 }
 
 function buildSquareObject(inputArr) {
