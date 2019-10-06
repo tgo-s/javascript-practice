@@ -1,3 +1,3 @@
-# Resolver Assessment
+# Javascript Practice
 
-Project for resolver assessment
+Some algorithms questions soved with javascript to practice purposes.
